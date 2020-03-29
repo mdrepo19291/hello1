@@ -1,0 +1,27 @@
+[
+{
+    "title": "Top 10 Largest Spiders in Movies",
+    "type": "top-10",
+    "img":"/data/SeaMonster.png"
+},
+{
+    "title": "Top 10 Largest Anime Monsters",
+    "type": "top-10",
+    "img":"/data/Elephants.png"
+},
+{
+    "title": "Shark Size Comparision: Living and Extinct",
+    "type": "comparision",
+    "img":"/data/Godzilla.jpg"
+},
+{
+    "title": "Sea Monsters Size Comparision: Living and Extinct",
+    "type": "comparision",
+    "img":"/data/SharkSize.png"
+},
+{
+    "title": "Monsterverse Monsters",
+    "type": "top-10",
+    "img":"/data/SeaMonster.png"
+}
+]
