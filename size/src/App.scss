@@ -45,15 +45,39 @@ $body-width: 1280px;
   width: 90%;
   max-width: $body-width;
   margin: 0 auto;
-  padding-top: 60px;
+  padding: 15vh 0;
+  // padding-top: 60px;
 }
 
 body {
-  background: linear-gradient(90deg, #00C9FF 0%, #92FE9D 100%);
+  background: linear-gradient(180deg, #00C9FF 0%, #92FE9D 100%);
+  min-height: 100vh;
 }
 
 .cards {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+}
+
+a, a:visited {
+  display: inline-flex;
+  height: fit-content;
+  // padding: 5px 10px;
+  // font-size: 14px;
+  // font-weight: 200;
+  // color: rgb(121, 111, 103);
+  text-decoration: none;
+}
+
+* {
+  font-family: 'Bree Serif', sans-serif;
+}
+
+.cont {
+  background: url("/data/Godzilla.jpg") no-repeat center center;
+  background-size: cover;
+  height: 40vh;
+  box-shadow: 0px 0px 40px 40px transparent, 0px 0px 60px 50px inset;
+
 }

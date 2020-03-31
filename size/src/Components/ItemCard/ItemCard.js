@@ -6,6 +6,7 @@ const ItemCard = (props) => {
   return (
     <>
       <div className="card-item">
+        <a href={"top-10/"+encodeURI(props.title)}>
         <div className="card-image">
           <img src={props.img} />
         </div>
@@ -14,6 +15,7 @@ const ItemCard = (props) => {
           <div className="detail">{props.detail}</div>
           <div className="footer">{props.footer}</div>
         </div>
+        </a>
       </div>
     {
     //   <Md/>

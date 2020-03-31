@@ -27,7 +27,7 @@ class NavBar extends React.Component {
         window.addEventListener('scroll', function() {
             if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
                 header.classList.add('bg-dark');
-                header.style.transition = 'all 0.5s'
+                header.style.transition = 'all 1s'
             } else {
                 header.classList.remove('bg-dark');
             }
@@ -47,7 +47,9 @@ class NavBar extends React.Component {
                 <div className="nav-links">
                   {
                     navLinks.map((link, ind)=>(
-                        <NavLink to={"/"+link.name.toLowerCase()}>
+                        <NavLink 
+                          to={"/compare/title-1" //"/"+link.name.toLowerCase()
+                        }>
                             {link.name}
                         </NavLink>
                     ))
