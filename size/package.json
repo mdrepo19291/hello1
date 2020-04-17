@@ -2,11 +2,13 @@
   "name": "size",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://mdrepo19291.github.io/",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "@types/react-transition-group": "^4.2.4",
+    "bootstrap": "^4.4.1",
     "mdbreact": "^4.25.4",
     "node-sass": "^4.13.1",
     "react": "^16.13.0",
@@ -15,7 +17,8 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.0",
     "react-transition-group": "^4.3.0",
-    "reactstrap": "^8.4.1"
+    "reactstrap": "^8.4.1",
+    "styled-components": "^5.1.0"
   },
   "scripts": {
     "start": "react-scripts start",

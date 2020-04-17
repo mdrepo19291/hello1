@@ -35,11 +35,11 @@ class Navbarr extends React.Component {
                 nav.classList.remove('py-0');
             }
         });
-        document.querySelector('nav > div > button').addEventListener("click",function(){
-            nav.style.backgroundColor = document.querySelector('#navbarTogglerDemo02').classList.toggle('show')?"rgb(72, 161, 253)":'inherit';
-            // document.querySelector('#navbarTogglerDemo02').classList.toggle('show')
-            // document.querySelector('#navbarTogglerDemo02').classList.toggle('bg-custom')
-        })
+        // document.querySelector('nav > div > button').addEventListener("click",function(){
+        //     nav.style.backgroundColor = document.querySelector('#navbarTogglerDemo02').classList.toggle('show')?"rgb(72, 161, 253)":'inherit';
+        //     // document.querySelector('#navbarTogglerDemo02').classList.toggle('show')
+        //     // document.querySelector('#navbarTogglerDemo02').classList.toggle('bg-custom')
+        // })
     }
     
     render(){
@@ -48,7 +48,7 @@ class Navbarr extends React.Component {
         <>
         <header>
     <div class="header">
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top scrolling-navbar">
       <div class="container">
         <NavLink class="navbar-brand py-0" to="/">
           <img className="nav-logo" alt="site-logo" src={Logo} />

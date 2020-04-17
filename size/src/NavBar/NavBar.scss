@@ -1,4 +1,4 @@
-$custom-bg: rgb(72, 161, 253);
+$custom-bg: rgb(113, 184, 255);
 
 .header {
     position: fixed;
@@ -16,7 +16,9 @@ $custom-bg: rgb(72, 161, 253);
 //         z-index: 99;
 //     }
 // }
-
+.navbar {
+    box-shadow: none;
+}
 nav {
     // height: 60px;
     position: relative;
@@ -31,16 +33,23 @@ nav {
     justify-content: space-between;
     a {
         height: fit-content;
+        color: #222;
     }
     .nav-logo {
         // margin-top: 5px;
         // margin-left: 30px;
         width: 20vw;
         height: 4vw;
+        min-width: 170px;
+        min-height: 34px;
         max-width: 220px;
         max-height: 45px;
     }
-
+    .nav-link{
+        // color: rgba(0, 0, 0, 0.5) !important;
+        &:hover {color: rgba(0, 0, 0,1)!important; font-weight: 500 }
+        color: rgba(0, 0, 0,.5) !important;
+    }
     .nav-links {
         margin-top: 15px;
         font-family: 'Bree Serif', sans-serif;
@@ -61,6 +70,8 @@ nav {
         // background-color: rgb(166, 174, 182);
         pointer-events: none;
         // font-weight: 500;
+        color: rgba(0, 0, 0,1)!important; 
+        // font-weight: 500;
     }
 }
 
@@ -75,3 +86,11 @@ nav {
 
 
  
+
+@media (max-width: 992px) {
+.header {
+    background-color: $custom-bg;
+    transition: all 0s;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16) !important;
+}
+}

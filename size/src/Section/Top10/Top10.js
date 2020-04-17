@@ -1,11 +1,17 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './Top10.scss';
+import Card from '../../Components/Card/Card';
 
 
 function Top10 () {
+    useEffect(()=>{
+        // document.querySelector(".side-bar .p-2").classList.remove("col-sm-6","col-md-6","col-lg-4","col-xl-3")
+      }
+    ,[])
     return (
         <>
-          <div className="page-container">
+          <div className="container">
+          <div className="page-container col-lg-8 px-5">
             <div className="page-title">
               <span>Title for the page</span>
             </div>
@@ -39,6 +45,13 @@ function Top10 () {
                   </div>
               </div>
             </div>
+          </div>
+          <div className="side-bar col-lg-3 d-flex flex-wrap">
+              <span className="pt-3">Related</span>
+              <Card classes=" col-md-6 col-lg-12 sd-card"/>
+              <Card classes=" col-md-6 col-lg-12 sd-card"/>
+              <Card classes=" col-md-6 col-lg-12 sd-card"/>
+          </div>
           </div>
         </>
     )

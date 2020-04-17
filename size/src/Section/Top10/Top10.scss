@@ -1,14 +1,24 @@
-$header-size: 2.2rem;
-$sub-header-size: 1.3rem;
+// Font size
+$header-size: 2rem;
+$sub-header-size: 1.2rem;
 $body-font: 1rem;
 
+// page-background
+$page-color: rgb(231, 231, 231);
+
 .page-container {
-    width: 65vw;
-    max-width: calc(1280px * 0.65 );
+    // width: 65%;
+    // max-width: calc(1280px * 0.65 );
     text-align: justify;
+    // padding: 2vw;
+    // display: flex;
+    float: left;
+    // box-shadow: 2px 2px 5px 1px #777;
+    // background-color: $page-color;
     .page-title {
         font-size: $header-size;
         font-weight: 500;
+        padding: $header-size 0;
     }
     .page-body {
         color: rgba($color: #312d2d, $alpha: 1.0);
@@ -26,8 +36,26 @@ $body-font: 1rem;
                         width: 100%;
                     }
                 }
+                .element-desc {
+                    padding-top: $body-font;
+                }
             }
         }
     }
+}
 
+.side-bar {
+    // width: 30%;//calc( 100% - 67vw );
+    // max-width: calc(1280px * 0.35 );
+    text-align: justify;
+    // margin-left: 2vw;
+    // padding: 2vw;
+    box-shadow: 2px 2px 5px 1px #777;
+    background-color: $page-color;
+    display: flex;
+    float: right;
+
+    .sd-card {
+        font-size: 0.8rem;
+    }
 }
