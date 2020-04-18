@@ -5,11 +5,11 @@ import { useParams, NavLink } from 'react-router-dom';
 //import ErrorBoundary from '../ErrorBoundary';
 
 const navLinks = [
+           {name:'Sports',type:'link',link:'sports'},
+           {name:'Animals',type:'link',link:'animals'},
            {name:'Top 10',type:'link',link:'top-10'},
            {name:'Comparision',type:'link',link:'compare'},
            {name:'Videos',type:'link',link:'videos'},
-        // {name:'Science',type:'link',link:'science'},
-        // {name:'Wildlife',type:'link',link:'wildlife'},
         // {name:'Pre-historic',type:'link',link:'pre-historic'},
         // {name:'Monsters',type:'link',link:'monsters'},
         // {name:'Movies',type:'movies',link:'movies'},

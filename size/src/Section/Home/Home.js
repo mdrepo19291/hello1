@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import Card from '../../Components/Card/Card';
 import { useFetch } from '../../Utility/Functions';
+import { PID, ytKEY } from '../../Utility/Constants';
 
 const Home = (props) => {
     // const [yTdata, setyTdata] = useState(null);
-    let pid = `UUlXVElUT7aHpjLo2d_4GkoA`
-    let ytURL = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${pid}&maxResults=8&key=AIzaSyAKjOPOdAIaDmGqtimApPGCtolkZWrCL_8`
+    let ytURL = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${PID}&maxResults=8&key=${ytKEY}`
     const data = useFetch('data');
-    const yTdata = null //useFetch(ytURL);
+    const yTdata = useFetch(ytURL);
     let youTube = yTdata;
     // console.log("Fetched data: ",yTdata);
     const tTopTen = data ? data.filter((x)=>(x.type === "top-10")) : null;

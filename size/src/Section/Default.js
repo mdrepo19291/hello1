@@ -1,18 +1,20 @@
 import React, {useEffect} from 'react';
 import {useParams, useRouteMatch} from 'react-router-dom';
 import { useFetch } from '../Utility/Functions';
+import { PID, ytKEY } from '../Utility/Constants';
 import Card from '../Components/Card/Card';
 
 const HEADING = {
     'top-10':"Top-10 picks",
     'compare':"Comparisions",
-    'videos':"Videos"
+    'videos':"Videos",
+    'animals': 'Animals',
+    'sports':'Sports'
 }
 
 function Default () {
     const { sec } = useParams();
     // console.log('in default', sec);
-    let pid = `UUlXVElUT7aHpjLo2d_4GkoA`
     // // let secData = null;
     // if(sec==='videos'){
     //     let pid = `UUlXVElUT7aHpjLo2d_4GkoA`
@@ -24,7 +26,7 @@ function Default () {
     // }
     
     let ytURL = sec==='videos' ? 
-                    `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${pid}&maxResults=16&key=AIzaSyAKjOPOdAIaDmGqtimApPGCtolkZWrCL_8`
+                    `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${PID}&maxResults=16&key=${ytKEY}`
                     : 'data';
     let secData = useFetch(ytURL);
     if(sec!=="videos"){
@@ -46,13 +48,15 @@ function Default () {
                               link={`https://www.youtube.com/watch?v=${item.snippet.resourceId.videoId}`} 
                               img={item.snippet.thumbnails.medium.url} />
                     )) : null
-                    : secData.map((topic, idx)=>(
+                    : secData.length === 0 ? <h4>No results found.</h4> 
+                        : secData.map((topic, idx)=>(
                         <Card key={idx} 
                               title={topic.title} 
                               link={topic.id ?`/${sec}/${topic.id}`:"#"} 
                               img={topic.img} 
                               desc={topic.description}/>
-                    )) : null
+                        )) 
+                : null
             }
             </div>
         </>
