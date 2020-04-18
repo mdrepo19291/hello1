@@ -1,15 +1,27 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Card from '../../Components/Card/Card';
 import { useFetch } from '../../Utility/Functions';
 
 const Home = (props) => {
-    
-
+    // const [yTdata, setyTdata] = useState(null);
+    let pid = `UUlXVElUT7aHpjLo2d_4GkoA`
+    let ytURL = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${pid}&maxResults=8&key=AIzaSyAKjOPOdAIaDmGqtimApPGCtolkZWrCL_8`
     const data = useFetch('data');
-    console.log("Fetched data: ",data);
-    const tCompare = data ? data.filter((x)=>(x.type === "top-10")) : null;
-    const tTopTen = data ? data.filter((x)=>(x.type === "compare")) : null;
-    console.log("Fetched compare: ",tCompare, tTopTen);
+    const yTdata = null //useFetch(ytURL);
+    let youTube = yTdata;
+    // console.log("Fetched data: ",yTdata);
+    const tTopTen = data ? data.filter((x)=>(x.type === "top-10")) : null;
+    const tCompare = data ? data.filter((x)=>(x.type === "compare")) : null;
+    // console.log("Fetched compare: ",tTopTen, tCompare);
+
+    // useEffect((pid)=>{
+    //     // const ytCall = ()=>(setyTdata(useFetch(yt)));
+    //     youTube = yTdata ? yTdata : youTube;
+    //     console.log("In effect---");
+    //     // setyTdata(useFetch(yt))
+    //     // ytCall();
+    // },[yTdata])
+
     return(
       <>
         <div className="cont d-flex align-content-center text-align-center flex-wrap">
@@ -20,9 +32,9 @@ const Home = (props) => {
       <hr class="red title-hr bg-danger" />
         <div className="cards">
         {
-            tCompare ? 
-                tCompare.map((topic, idx)=>(
-                    <Card key={idx} title={topic.title} img={topic.img}/>
+            tTopTen ? 
+                tTopTen.map((topic, idx)=>(
+                    <Card key={idx} title={topic.title} link={topic.id ? `/top-10/${topic.id}` : "#"} img={topic.img} desc={topic.description}/>
                 )) 
                 : null
         }
@@ -38,9 +50,9 @@ const Home = (props) => {
       <hr class="red title-hr bg-danger" />
         <div className="cards">
         {
-            tTopTen ? 
-                tTopTen.map((topic, idx)=>(
-                    <Card key={idx} title={topic.title} link={`/compare/${topic.id}`} img={topic.img}/>
+            tCompare ? 
+                tCompare.map((topic, idx)=>(
+                    <Card key={idx} title={topic.title} link={`/compare/${topic.id}`} img={topic.img} desc={topic.description}/>
                 )) 
                 : null
         }
@@ -54,6 +66,15 @@ const Home = (props) => {
         
         <h4 class="font-weight-bold mt-4">Recent Videos</h4>
         <hr class="red title-hr bg-danger" />
+        <div className="cards">
+        {
+            youTube ? 
+                youTube.items.map((item, idx)=>(
+                    <Card key={idx} title={item.snippet.title} link={`https://www.youtube.com/watch?v=${item.snippet.resourceId.videoId}`} img={item.snippet.thumbnails.medium.url} />
+                )) 
+                : null
+        }
+        </div>
       
     </>
   )}

@@ -6,7 +6,7 @@ import { MDBCarousel, MDBCarouselCaption, MDBCarouselInner, MDBCarouselItem, MDB
 
 const Carousal = ({data}) => {
     let arr = [...Array(data.images).keys()].map(i => i+1);
-    console.log(arr);
+    // console.log(arr);
   return (
     <>
     <StyledCarousal className="py-4">
@@ -18,7 +18,7 @@ const Carousal = ({data}) => {
         length={data.images}
         showControls={true}
         showIndicators={true}
-        className="z-depth-1"
+        className="z-depth-4"
         >
         <MDBCarouselInner>
             {

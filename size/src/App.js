@@ -5,6 +5,7 @@ import NavBar from './NavBar/NavBar'
 import Navbarr from './NavBar/Navbarr'
 import Top10 from './Section/Top10/Top10'
 import Compare from './Section/Compare/Compare'
+import Default from './Section/Default'
 import Share from './Components/Share/Share'
 import Home from './Section/Home/Home';
 import ItemCard from './Components/ItemCard/ItemCard'
@@ -19,19 +20,19 @@ import Carousal from './Components/Carousal/Carousal'
 // import data from './data/data.json'
 
 
-const Default = (props) => {
-  return(
-    <>
-    <ItemCard/>
-    <h1>
-      Under construction. ({props.match.params.sec})
-    </h1>
-    {/* <Carousal /> */}
-    <br />
+// const Default = (props) => {
+//   return(
+//     <>
+//     <ItemCard/>
+//     <h1>
+//       Under construction. ({props.match.params.sec})
+//     </h1>
+//     {/* <Carousal /> */}
+//     <br />
     
-    </>
-)
-}
+//     </>
+// )
+// }
 
 function App() {
   return (

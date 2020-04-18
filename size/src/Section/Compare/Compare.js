@@ -11,11 +11,11 @@ function Compare(){
     const { path, url } = useRouteMatch();
 
     let compareData = useFetch('data');
-    console.log(topicId);
+    // console.log(topicId);
 
     let topicDetails = compareData ? compareData.filter((topic)=>(topic.id===topicId))[0] 
                                    : null ;
-    console.log("topic: ",topicDetails);
+    // console.log("topic: ",topicDetails);
     // Array(8).fill().map((i,idx)=>(console.log(i,idx)));
     // let arr = [...Array(8).keys()].map(i => i+1);
     // console.log("Array trial: ",`/data/images/output/${arr[4]+1}.png`,arr);
@@ -25,10 +25,13 @@ function Compare(){
           
           {
             topicDetails ? <><h1 className="compare-title text-center">{topicDetails.title}</h1>
-                          <Carousel data={topicDetails} /></>
+                          <Carousel data={topicDetails} />
+                          {topicDetails.description?topicDetails.description.map((d)=>(
+                                <p className="text-center w-responsive mx-auto">{decodeURI(d)}</p>)):""}
+                          </>
                         : null
           }
-          <p className="text-center h4">Some random description here</p>
+          
 {/* 
           <div className="col-lg-8 col-12 mt-1 mx-lg-4">
                 <div className="row mb-4">

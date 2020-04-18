@@ -5,13 +5,17 @@ import { useParams, NavLink } from 'react-router-dom';
 //import ErrorBoundary from '../ErrorBoundary';
 
 const navLinks = [
-        {name:'Science',type:'link'},
-        {name:'Wildlife',type:'link'},
-        {name:'Pre-historic',type:'link'}, 
-        {name:'Monsters',type:'link'},
-        {name:'Movies',type:'link'},
-        {name:'Statistics',type:'link'},
-        {name:'More',type:'dropdown',options:['About Us','Request Topics']}]
+           {name:'Top 10',type:'link',link:'top-10'},
+           {name:'Comparision',type:'link',link:'compare'},
+           {name:'Videos',type:'link',link:'videos'},
+        // {name:'Science',type:'link',link:'science'},
+        // {name:'Wildlife',type:'link',link:'wildlife'},
+        // {name:'Pre-historic',type:'link',link:'pre-historic'},
+        // {name:'Monsters',type:'link',link:'monsters'},
+        // {name:'Movies',type:'movies',link:'movies'},
+        // {name:'Statistics',type:'link',link:'statistics'},
+        // {name:'More',type:'dropdown',options:['About Us','Request Topics']}
+      ]
 
 class Navbarr extends React.Component {
     constructor(){
@@ -76,7 +80,7 @@ class Navbarr extends React.Component {
               navLinks.map((link, ind)=>(
                 <li class="nav-item">
                   <NavLink 
-                    to={"/"+link.name.toLowerCase()
+                    to={link.link?"/"+link.link:"#"
                   } className="nav-link">
                       {link.name}
                   </NavLink>
