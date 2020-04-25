@@ -1,11 +1,10 @@
 .card {
     box-shadow: 1px 1px 3px #000;
+    transition: all .3s;
 }
 .scale {
     &:hover {
-        transform: scale(1.05);
-        transition: all .2s ease-in-out;
-        // transition: ease-in-out .2s;
+        transform: scale(1.08);
         cursor: pointer;
     }
 }

@@ -3,6 +3,7 @@ import {useParams, useRouteMatch} from 'react-router-dom';
 import { useFetch } from '../../Utility/Functions';
 import './Top10.scss';
 import Card from '../../Components/Card/Card';
+import styled from 'styled-components';
 
 
 
@@ -22,7 +23,7 @@ function Top10 () {
 
     return (
         <>
-          <div className="container">
+          <StyledDiv className="container">
           <div className="page-container col-lg-8 px-5">
 
             {topicHead ? <div className="page-title"><span>{topicHead.title}</span></div>
@@ -75,13 +76,76 @@ function Top10 () {
               <Card classes=" col-md-6 col-lg-12 sd-card"/>
               <Card classes=" col-md-6 col-lg-12 sd-card"/> */}
           </div>
-          </div>
+          </StyledDiv>
         </>
     )
 }
 
 export default Top10;
 
-{
-   // http://localhost:3000/top-10/Top%2010%20Largest%20Spiders%20in%20Movies
-}
+
+
+const StyledDiv = styled.div`
+    // // Font size
+    // $header-size: 2rem;
+    // $sub-header-size: 1.2rem;
+    // $body-font: 1rem;
+
+    // // page-background
+    // $page-color: rgb(231, 231, 231);
+
+    // .page-container {
+    //     // width: 65%;
+    //     // max-width: calc(1280px * 0.65 );
+    //     text-align: justify;
+    //     // padding: 2vw;
+    //     // display: flex;
+    //     float: left;
+    //     // box-shadow: 2px 2px 5px 1px #777;
+    //     // background-color: $page-color;
+    //     .page-title {
+    //         font-size: $header-size;
+    //         font-weight: 500;
+    //         padding: $header-size 0;
+    //     }
+    //     .page-body {
+    //         color: rgba($color: #312d2d, $alpha: 1.0);
+    //         font-size: $body-font;
+    //         .page-top-members {
+    //             .page-top-element {
+    //                 margin-top: 5vh;
+    //                 .element-title {
+    //                     padding-bottom: 10px;
+    //                     font-size: $sub-header-size;
+    //                 }
+    //                 .element-image {
+    //                     width: 100%;
+    //                     img {
+    //                         width: 100%;
+    //                     }
+    //                 }
+    //                 .element-desc {
+    //                     padding-top: $body-font;
+    //                     font-family: 'Roboto', sans-serif;
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
+
+    // .side-bar {
+    //     // width: 30%;//calc( 100% - 67vw );
+    //     // max-width: calc(1280px * 0.35 );
+    //     text-align: justify;
+    //     // margin-left: 2vw;
+    //     // padding: 2vw;
+    //     box-shadow: 2px 2px 5px 1px #777;
+    //     background-color: $page-color;
+    //     display: flex;
+    //     float: right;
+
+    //     .sd-card {
+    //         font-size: 0.8rem;
+    //     }
+    // }
+`

@@ -30,7 +30,8 @@ function Default () {
                     : 'data';
     let secData = useFetch(ytURL);
     if(sec!=="videos"){
-        secData = secData && !Object.keys(secData).includes('items') ? secData.filter((x)=>(x.type === sec)) : null;
+        console.log(secData);
+        secData = secData && !Object.keys(secData).includes('items') && !Object.keys(secData).includes('error') ? secData.filter((x)=>(x.type === sec)) : null;
     }
     // console.log('fetched--------',secData);
 
@@ -47,7 +48,7 @@ function Default () {
                         <Card key={idx} title={item.snippet.title} 
                               link={`https://www.youtube.com/watch?v=${item.snippet.resourceId.videoId}`} 
                               img={item.snippet.thumbnails.medium.url} />
-                    )) : null
+                    )) : <div class="spinner-border text-secondary" role="status"></div>
                     : secData.length === 0 ? <h4>No results found.</h4> 
                         : secData.map((topic, idx)=>(
                         <Card key={idx} 

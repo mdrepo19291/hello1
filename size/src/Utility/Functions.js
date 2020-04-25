@@ -1,4 +1,10 @@
 import { useState, useEffect } from 'react';
+// import firebase from 'firebase';
+import * as firebase from 'firebase/app';
+import 'firebase/firestore'
+import 'firebase/storage'
+
+import { firebaseConfig } from './Constants';
 
 // fetching the JSON data
 export const useFetch = url => {
@@ -14,3 +20,8 @@ export const useFetch = url => {
     }, [url]); // 
     return data;
   };
+
+
+firebase.initializeApp(firebaseConfig);
+export const firestore = firebase.firestore();
+export const storage = firebase.storage();

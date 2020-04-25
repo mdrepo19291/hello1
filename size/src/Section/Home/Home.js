@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Card from '../../Components/Card/Card';
+import ErrorBoundary from '../../Components/ErrorBoundary';
 import { useFetch } from '../../Utility/Functions';
 import { PID, ytKEY } from '../../Utility/Constants';
 
@@ -9,7 +10,7 @@ const Home = (props) => {
     const data = useFetch('data');
     const yTdata = useFetch(ytURL);
     let youTube = yTdata;
-    // console.log("Fetched data: ",yTdata);
+    console.log("Fetched data: ",youTube);
     const tTopTen = data ? data.filter((x)=>(x.type === "top-10")) : null;
     const tCompare = data ? data.filter((x)=>(x.type === "compare")) : null;
     // console.log("Fetched compare: ",tTopTen, tCompare);
@@ -66,15 +67,21 @@ const Home = (props) => {
         
         <h4 class="font-weight-bold mt-4">Recent Videos</h4>
         <hr class="red title-hr bg-danger" />
+        <ErrorBoundary>
         <div className="cards">
         {
             youTube ? 
-                youTube.items.map((item, idx)=>(
-                    <Card key={idx} title={item.snippet.title} link={`https://www.youtube.com/watch?v=${item.snippet.resourceId.videoId}`} img={item.snippet.thumbnails.medium.url} />
-                )) 
-                : null
+                youTube.items ? 
+                    youTube.items.map((item, idx)=>(
+                        <Card key={idx} title={item.snippet.title} link={`https://www.youtube.com/watch?v=${item.snippet.resourceId.videoId}`} img={item.snippet.thumbnails.medium.url} />
+                    )) 
+                    : <div class="spinner-border text-secondary" role="status"></div>
+                : <div class="spinner-border text-secondary" role="status">
+                <span class="sr-only">Loading...</span>
+                </div>
         }
         </div>
+        </ErrorBoundary>
       
     </>
   )}

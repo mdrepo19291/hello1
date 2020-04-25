@@ -87,7 +87,7 @@ const StyledCarousal = styled.div`
         box-shadow: inset -10px 0 10px -0px rgba(0,0,0,0.5);
     }
     .carousel-indicators {
-        bottom: -20px;
+        bottom: -55px;
     }
 `
 

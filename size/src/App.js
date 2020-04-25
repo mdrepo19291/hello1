@@ -1,17 +1,15 @@
 import React from 'react';
 import './App.scss';
 import {HashRouter as Router, Route, Switch} from 'react-router-dom'
-import NavBar from './NavBar/NavBar'
 import Navbarr from './NavBar/Navbarr'
 import Top10 from './Section/Top10/Top10'
 import Compare from './Section/Compare/Compare'
 import Default from './Section/Default'
-import Share from './Components/Share/Share'
 import Home from './Section/Home/Home';
-import ItemCard from './Components/ItemCard/ItemCard'
 // import Card from './Components/Card/Card'
 import Footer from './Components/Footer/Footer'
-import Carousal from './Components/Carousal/Carousal'
+// import Carousal from './Components/Carousal/Carousal'
+import AddDocument from './Section/AddDocument'
 // import 'bootstrap/dist/css/bootstrap.min.css';
 // import './Utility/bootstrap.min.css'
 // import './Utility/mdb.min.css'
@@ -45,6 +43,7 @@ function App() {
         <Route path="/science" component={Default} exact />
         <Route path="/top-10/:topicId"component={Top10} exact/>
         <Route path="/compare/:topicId"component={Compare} exact/>
+        <Route path="/add-document" component={AddDocument} exact/>
         <Route path="/:sec"component={Default}/>
       </Switch>
       </div>
