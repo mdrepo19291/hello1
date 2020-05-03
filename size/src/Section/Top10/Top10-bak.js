@@ -1,96 +1,83 @@
 import React, {useEffect} from 'react';
 import {useParams, useRouteMatch} from 'react-router-dom';
-import { useFetchMeta, useFetchDoc } from '../../Utility/Functions';
-import ErrorMsg from '../../Components/ErrorMsg';
+import { useFetch } from '../../Utility/Functions';
 import './Top10.scss';
 import Card from '../../Components/Card/Card';
-import Comments from '../../Components/Comments';
 import styled from 'styled-components';
 
 
 
-function Top10 ({allData}) {
+function Top10 () {
 
   const { topicId } = useParams();
   // const { path, url } = useRouteMatch();
 
-  // console.log(useFetchDoc(topicId));
-  // let topicData = useFetch(`top-10/${topicId}`);
-  let topicData = useFetchDoc(topicId,'top-10');  // Fetch the body section
-  let topicHead = useFetchDoc(topicId);           // Fetch the title and intro section
-  let tTopTen;
-  allData = useFetchMeta();
-  if(allData){
-    tTopTen = Object.keys(allData).map(key=>(allData[key]));
-    // Object.keys(allData).filter(key => allData[key]['doc-type']==="top-10")
-    // .reduce((obj, key) => ([...obj, allData[key]]),[]);
-    // Object.keys(allData).map(key=>(allData[key]));
-  }
-  let isError = topicHead && topicData && topicHead.error && topicData.error;
-  if(topicData){
-    delete topicData.id
-  };
-  // if(isError){
-  //     document.querySelector(".page-container").innerHTML = "Something went wrong. We are working on it. Please visit later.";
-  // }
+  let topicData = useFetch(`top-10/${topicId}`);
+  let head = useFetch('data');
+  const tTopTen = head ? head.filter((x)=>(x.type === "top-10")) : null;
+    // console.log(topicId);
+  let dataLen = topicData ? topicData.length : null;
+  let topicHead = head ? head.filter((topic)=>(topic.id===topicId))[0] 
+                                   : null ;
+  // console.log("data: ",dataLen, data);
 
     return (
         <>
-        { isError ? <ErrorMsg/> : <>
-          <StyledDiv className="container clearfix">
+          <StyledDiv className="container">
           <div className="page-container col-lg-8 px-5">
 
             {topicHead ? <div className="page-title"><span>{topicHead.title}</span></div>
                        : null }
 
             <div className="page-body">
-                {topicHead ? <div className="page-desc">{typeof(topicHead.description)==='string'? topicHead.description : topicHead.description.map((head,idx)=>(<p key={`head${idx}`}>{head}</p>))
-                              }</div>
-                            : null }
+                {topicHead ? <div className="page-desc">{topicHead.description.map((head)=>(<p key={head}>{decodeURI(head)}</p>))}</div>
+                       : null }
               
               <div className="page-top-members">
-                { topicData ? Object.keys(topicData).sort().reverse().map((subKey, idx)=>(
+                {topicData ? topicData.map((dt, idx)=>(
                         <div className="page-top-element" key={idx}>
                           <div className="element-title">
-                            <span>{`${subKey}) ${topicData[subKey].subTitle ? decodeURI(topicData[subKey].subTitle) : null}`}</span>
+                            <span>{`${dataLen-idx}) ${decodeURI(dt.name)}`}</span>
                           </div>
-                          <div className="element-image z-depth-1">
-                            <img src={topicData[subKey].subImg} alt="Image unavailable"/>
+                          <div className="element-image">
+                            <img src={dt.image} alt="Image unavailable"/>
                           </div>
-                          <div className="element-desc" id={`element${subKey}`}>
-                            { !topicData[subKey].subDesc ? null :
-                              typeof(topicData[subKey].subDesc)==="string" ? topicData[subKey].subDesc : topicData[subKey].subDesc.map((head,idx)=>(<p key={`sub${idx}`}>{head}</p>))
-                            }
+                          <div className="element-desc">
+                            {dt.detail.map((para)=>(<p>{decodeURI(para)}</p>))}
                           </div>
                         </div>
                       ))
                       : null}
                   
+
+                  {/* <div className="page-top-element">
+                    <div className="element-title">
+                      <span>10) Text ever since the 1500s</span>
+                    </div>
+                    <div className="element-image">
+                      <img src="https://www.stemjar.com/wp-content/uploads/2017/09/Lorem-Ipsum-text-Standard-Filler-Text.jpg" alt="Image unavailable"/>
+                    </div>
+                    <div className="element-desc">
+                      <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages.</p>
+                    </div>
+                  </div> */}
               </div>
             </div>
           </div>
 
-          {/* Sidebar section */}
           <div className="side-bar col-lg-3 d-flex flex-wrap py-3 mt-5">
               <span className="h5 w-100">Related</span>
               {
-                tTopTen ? 
-                tTopTen.map((topic, idx)=>(
-                    <Card key={idx} title={topic.title} link={topic.id ? `/${topic['doc-type']}/${topic.id}` : "#"} img={topic.thumbnail || topic.img[0]} desc={topic.description} classes=" col-md-6 col-lg-12 sd-card"/>
-                )) 
-                : null
-                // tTopTen ? tTopTen.map((topic)=>(
-                //             <Card classes=" col-md-6 col-lg-12 sd-card" key={topic} title={topic.title} link={topic.id ? `/top-10/${topic.id}` : "#"} img={topic.img} desc={topic.description}/>))
-                //         : null
+                tTopTen ? tTopTen.map((topic)=>(
+                            <Card classes=" col-md-6 col-lg-12 sd-card" key={topic} title={topic.title} link={topic.id ? `/top-10/${topic.id}` : "#"} img={topic.img} desc={topic.description}/>))
+                        : null
               }
               {/*               
               <Card classes=" col-md-6 col-lg-12 sd-card"/>
               <Card classes=" col-md-6 col-lg-12 sd-card"/> */}
           </div>
           </StyledDiv>
-          <Comments topic={topicId}/>
-        </>}
-      </>
+        </>
     )
 }
 

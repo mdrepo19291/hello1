@@ -5,6 +5,7 @@ import { useParams, NavLink } from 'react-router-dom';
 //import ErrorBoundary from '../ErrorBoundary';
 
 const navLinks = [
+          //  {name:'New',type:'link',link:'add-document'},
            {name:'Sports',type:'link',link:'sports'},
            {name:'Animals',type:'link',link:'animals'},
            {name:'Top 10',type:'link',link:'top-10'},

@@ -41,17 +41,19 @@
 $body-width: 1280px;
 
 body{
-  background: #4CA1AF;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to bottom, rgb(205, 230, 235), rgb(125, 199, 211));  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to bottom, rgb(205, 230, 235), rgb(125, 199, 211)); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: rgb(202, 243, 248);  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom, rgb(218, 238, 241), rgb(148, 203, 211));  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom, rgb(218, 238, 241), rgb(148, 203, 211)); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   height: 100vh;
   width: 100vw;
   background-repeat: no-repeat;
   background-attachment: fixed;
+  font-family: 'Bree Serif', sans-serif;
 }
 .main {
   width: 90%;
   max-width: $body-width;
+  min-height: 90vh;
   margin: 0 auto;
   padding: 15vh 0;
 }
@@ -75,18 +77,29 @@ a, a:visited {
   text-decoration: none;
 }
 
-body {
-  font-family: 'Bree Serif', sans-serif;
-}
-
+$cont-height: 50vh;
 .cont {
-  background: url("/data/Godzilla.jpg") no-repeat center center;
-  background-size: cover;
-  height: 40vh;
-  box-shadow: 0px 0px 40px 40px transparent, 0px 0px 60px 50px inset;
-
+  // background: url("/data/Godzilla.jpg") no-repeat center center;
+  // background-size: cover;
+  background-color: #22252b;
+  min-height: 20em;
+  height: $cont-height;
+  img {
+    height: $cont-height;
+  }
+}
+.cont-overlay {
+  box-shadow: 0px 0px 40px 40px transparent, 0px 0px 60px 80px inset;
+  z-index: 1;
+  pointer-events: none;
+  height: 130%!important;
+  top: -15%!important;
 }
 
+.font-gill {
+  font-family: "Gill Sans", sans-serif;
+  font-weight: 400;
+}
 
 // Compare Section
 
@@ -96,4 +109,7 @@ body {
   float: right;
   font-size: 3vw;
   // background-color: lightgrey;
+}
+.img-w100 img{
+  width: 100%;
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import styled from 'styled-components';
 // import '../../Utility/bootstrap.min.css'
 import {Link} from 'react-router-dom'
@@ -6,8 +6,12 @@ import './Card.scss'
 
 export default function Card (props) {
     let classes = props.classes || "col-sm-6 col-md-6 col-lg-4 col-xl-3";
-    let def_img = "https://mdbootstrap.com/img/Photos/Others/images/17.jpg";
+    let def_img = "/data/images/noimage.png";
     const StyledLink =  props.link.startsWith('http') ? styled('a')`` : styled(Link)``;
+
+    const handleClick = e => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
     return (
         <>
         <div className={" py-3 "+classes}>
@@ -15,7 +19,7 @@ export default function Card (props) {
                 props.link.startsWith('http') ?
                     <a href={props.link}>
             } */}
-        <StyledLink href={props.link}  to={props.link || "/top-10/title-1"}>
+        <StyledLink href={props.link}  to={props.link || "/top-10/title-1"} onClick={handleClick}>
             <div className="card text-left scale">
 
             <div className>
@@ -24,7 +28,7 @@ export default function Card (props) {
             
             <div className="px-3 pt-1">
                 <span className="h5 card-title">
-                    {props.title?props.title:"Title goes here"}
+                    {props.title?props.title:""}
                 </span>
                 <p className="dark-grey-text mt-2">
                     {props.desc?decodeURI(props.desc).substr(0,97)+"...":" "}

@@ -24,7 +24,10 @@ $page-color: rgb(231, 231, 231);
         color: rgba($color: #312d2d, $alpha: 1.0);
         font-size: $body-font;
         .page-desc {
-            font-family: 'Roboto', sans-serif;}
+            // font-family: 'Roboto', sans-serif;
+            font-family: "Gill Sans", sans-serif;
+            font-weight: 400;
+        }
         .page-top-members {
             .page-top-element {
                 margin-top: 5vh;
@@ -40,7 +43,8 @@ $page-color: rgb(231, 231, 231);
                 }
                 .element-desc {
                     padding-top: $body-font;
-                    font-family: 'Roboto', sans-serif;
+                    font-family: "Gill Sans", sans-serif;
+                    font-weight: 400;
                 }
             }
         }
