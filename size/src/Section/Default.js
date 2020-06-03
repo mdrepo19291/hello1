@@ -1,16 +1,25 @@
 import React, {useEffect} from 'react';
 import {useParams, useRouteMatch} from 'react-router-dom';
 import { useFetchMeta } from '../Utility/Functions';
-import { PID, ytKEY } from '../Utility/Constants';
+import { PID, ytKEY, noimage16x9 } from '../Utility/Constants';
 import Card from '../Components/Card/Card';
 import ErrorMsg from '../Components/ErrorMsg';
 
 const HEADING = {
-    'top-10':"Top-10 picks",
-    'compare':"Comparisions",
-    'videos':"Videos",
-    'animals': 'Animals',
-    'sports':'Sports'
+    "top-10" : "Top-10 picks",
+    "compare" : "Comparisions",
+    "videos" : "Videos",
+    "animals" : "Animals",
+    "sports" : "Sports",
+    "military" : "Military",
+    "superhero" : "Superhero",
+    "anime" : "Anime",
+    "monsters" : "Monsters",
+    "infrastructure" : "Infrastractures",
+    "gaming" : "Gaming",
+    "countries" : "Countries",
+    "geography" : "Geography",
+    "space" : "Space"
 }
 
 function Default () {
@@ -28,19 +37,20 @@ function Default () {
                     .reduce((obj, key) => ([...obj, allData[key]]),[]);
         } else {
             secData = Object.keys(allData).filter(key => allData[key].tags ? allData[key].tags.includes(sec):false)
-                    .reduce((obj, key) => ([...obj, allData[key]]),[]);
+                    .reduce((obj, key) => ([...obj, allData[key]]),[]);   // could use .map here
         }
+        secData = secData.sort((a,b)=>b.createdAt-a.createdAt);
         // console.log("done",secData);
         // secData = Object.keys(allData).reduce((data, dat)=>({dat:allData[dat],...data}),{});
         // let topData = Object.keys(secData).filter((data)=>(secData[data]['doc-type']==='top-10'));
     };
-    console.log('All,this: ',allData,secData);
+    // console.log('All,this: ',allData,secData);
 
     return (
         <>
         {/* <h2>This is : {sec}</h2> */}
         { isError ? <ErrorMsg/> : <>
-            <h3 class="font-weight-bold mt-4">{HEADING[sec]}</h3>
+            <h3 class="font-weight-bold mt-4">{HEADING[sec] || String(sec)}</h3>
             <hr class="red title-hr bg-danger" />
             <div className="cards">
             { secData ? 
@@ -56,7 +66,7 @@ function Default () {
                         <Card key={idx} 
                               title={topic.title} 
                               link={topic.id ?`/${topic['doc-type']}/${topic.id}`:"#"} 
-                              img={topic.thumbnail || topic.img[0] || null}
+                              img={topic.thumbnail || ('img' in topic ? topic.img[0]: noimage16x9) || null}
                               desc={topic.description}/>
                         )) 
                 : null

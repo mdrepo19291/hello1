@@ -65,4 +65,10 @@ $page-color: rgb(231, 231, 231);
     .sd-card {
         font-size: 0.8rem;
     }
+
+    @media (max-width: 768px) {
+        margin: 0 auto;
+        width: 80%;
+        float: none;
+    }
 }

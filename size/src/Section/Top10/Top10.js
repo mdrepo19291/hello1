@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import {useParams, useRouteMatch} from 'react-router-dom';
 import { useFetchMeta, useFetchDoc } from '../../Utility/Functions';
+import { noimage16x9 } from '../../Utility/Constants';
 import ErrorMsg from '../../Components/ErrorMsg';
 import './Top10.scss';
 import Card from '../../Components/Card/Card';
@@ -21,7 +22,9 @@ function Top10 ({allData}) {
   let tTopTen;
   allData = useFetchMeta();
   if(allData){
-    tTopTen = Object.keys(allData).map(key=>(allData[key]));
+    tTopTen = Object.keys(allData).filter(e=>e!==topicId).map(key=>(allData[key]));
+    tTopTen = tTopTen.sort(() => Math.random() - 0.5);  // shuffle the data, to show user random suggestions
+    tTopTen = tTopTen.slice(0,12);
     // Object.keys(allData).filter(key => allData[key]['doc-type']==="top-10")
     // .reduce((obj, key) => ([...obj, allData[key]]),[]);
     // Object.keys(allData).map(key=>(allData[key]));
@@ -37,8 +40,8 @@ function Top10 ({allData}) {
     return (
         <>
         { isError ? <ErrorMsg/> : <>
-          <StyledDiv className="container clearfix">
-          <div className="page-container col-lg-8 px-5">
+          <StyledDiv className="container clearfix px-0">
+          <div className="page-container col-lg-8">
 
             {topicHead ? <div className="page-title"><span>{topicHead.title}</span></div>
                        : null }
@@ -49,7 +52,7 @@ function Top10 ({allData}) {
                             : null }
               
               <div className="page-top-members">
-                { topicData ? Object.keys(topicData).sort().reverse().map((subKey, idx)=>(
+                { topicData ? Object.keys(topicData).sort((a,b)=> a-b ).reverse().map((subKey, idx)=>(
                         <div className="page-top-element" key={idx}>
                           <div className="element-title">
                             <span>{`${subKey}) ${topicData[subKey].subTitle ? decodeURI(topicData[subKey].subTitle) : null}`}</span>
@@ -76,7 +79,7 @@ function Top10 ({allData}) {
               {
                 tTopTen ? 
                 tTopTen.map((topic, idx)=>(
-                    <Card key={idx} title={topic.title} link={topic.id ? `/${topic['doc-type']}/${topic.id}` : "#"} img={topic.thumbnail || topic.img[0]} desc={topic.description} classes=" col-md-6 col-lg-12 sd-card"/>
+                    <Card key={idx} title={topic.title} link={topic.id ? `/${topic['doc-type']}/${topic.id}` : "#"} img={topic.thumbnail || ('img' in topic? topic.img[0]:noimage16x9)} desc={topic.description} classes=" col-md-6 col-lg-12 sd-card"/>
                 )) 
                 : null
                 // tTopTen ? tTopTen.map((topic)=>(

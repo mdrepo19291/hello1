@@ -65,5 +65,11 @@ export default Videos;
 const StyledDiv = styled.div`
     .yt-player {
         max-width: 70%;
+        margin-bottom: 1rem;
+    }
+    @media (max-width: 768px) {
+        .yt-player {
+            max-width: 100%;
+        }
     }
 `

@@ -11,6 +11,7 @@ import Home from './Section/Home/Home';
 // import Card from './Components/Card/Card'
 import Footer from './Components/Footer/Footer'
 // import Carousal from './Components/Carousal/Carousal'
+// react-sticky for sticky scrolls
 import AddDocument from './Section/AddDocument'
 
 

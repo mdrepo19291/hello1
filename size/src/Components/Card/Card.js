@@ -2,16 +2,22 @@ import React, {useEffect} from 'react';
 import styled from 'styled-components';
 // import '../../Utility/bootstrap.min.css'
 import {Link} from 'react-router-dom'
+import { noimage16x9 } from '../../Utility/Constants';
 import './Card.scss'
 
 export default function Card (props) {
     let classes = props.classes || "col-sm-6 col-md-6 col-lg-4 col-xl-3";
-    let def_img = "/data/images/noimage.png";
+    // let noimage16x9 = ;
     const StyledLink =  props.link.startsWith('http') ? styled('a')`` : styled(Link)``;
 
     const handleClick = e => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
+
+    useEffect(()=>{
+        // document.
+    },[])
+
     return (
         <>
         <div className={" py-3 "+classes}>
@@ -23,7 +29,7 @@ export default function Card (props) {
             <div className="card text-left scale">
 
             <div className>
-                <img src={props.img?props.img:def_img} class="card-img-top" alt="Image Not found"/>
+                <img src={props.img?props.img:noimage16x9} class="card-img-top" alt="Image Not found" onError={(e)=>{console.log('card image not found');if(e.target.height<100){e.target.src = noimage16x9} }} />
             </div>
             
             <div className="px-3 pt-1">

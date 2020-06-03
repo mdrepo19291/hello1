@@ -92,4 +92,8 @@ const StyledComms = styled.div`
     .md-form, .md-outline {
         margin: 0px
     }
+
+    @media (max-width: 768px) {
+        width: 90%;
+    }
 `

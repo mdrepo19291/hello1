@@ -44,11 +44,12 @@ const Carousal = ({imgData, classes, controls, caption}) => {
         // }
         
         setAllImages(imgData);
-        // return () => {
-            // document.querySelector(".carousel-indicators").remove();
-            // console.log('cleaned up');}
+        return () => {
+            // if(document.querySelector(".carousel-indicators"))document.querySelector(".carousel-indicators").remove();
+            // if(notAdded)document.querySelector(".carousel-indicators").remove();
+            console.log('cleaned up');}
         // indicators.parentNode.parentNode.append(indicators);
-    },[imgData])
+    },[imgData,allImages])
 
   return (
     <>
@@ -56,33 +57,33 @@ const Carousal = ({imgData, classes, controls, caption}) => {
 
         <MDBContainer>
 
-        <MDBCarousel
-            activeItem={1}
-            length={allImages.length}
-            showControls={controls}
-            showIndicators={true}
-            className={`z-depth-2`}
-        >
-        <MDBCarouselInner>
-            {
-                allImages.map((imag,idx)=>(
-                    <MDBCarouselItem itemId={`${idx+1}`} key={`img${idx+1}`}>
-                    <MDBView>
-                      <img
-                        className="d-block"
-                        src={imag}
-                        alt={'No image found'}
-                      />
-                    {/* <MDBMask overlay="black-light" /> */}
-                    </MDBView>
-                    <MDBCarouselCaption>
-                        {caption ? caption[idx] : null}
-                    </MDBCarouselCaption>
-                    </MDBCarouselItem>
-                ))
-            }
-        </MDBCarouselInner>
-        </MDBCarousel>
+            <MDBCarousel
+                activeItem={1}
+                length={allImages.length}
+                showControls={controls}
+                showIndicators={true}
+                className={`z-depth-2`}
+            >
+                <MDBCarouselInner>
+                    {
+                        allImages.map((imag,idx)=>(
+                            <MDBCarouselItem itemId={`${idx+1}`} key={`img${idx+1}`}>
+                                <MDBView>
+                                <img
+                                    className="d-block"
+                                    src={imag}
+                                    alt={'No image found'}
+                                />
+                                {/* <MDBMask overlay="black-light" /> */}
+                                </MDBView>
+                                <MDBCarouselCaption>
+                                    {caption ? caption[idx] : null}
+                                </MDBCarouselCaption>
+                            </MDBCarouselItem>
+                        ))
+                    }
+                </MDBCarouselInner>
+            </MDBCarousel>
         </MDBContainer>
     </StyledCarousal>
     </>

@@ -4,6 +4,8 @@ import { MDBInput, MDBBtn, MDBFormInline, MDBProgress, MDBIcon } from 'mdbreact'
 import { firestore, storage } from '../Utility/Functions';
 import Comments from '../Components/Comments';
 
+const TAGS = ["Animal", "Sports","Wildlife","Military","Superhero","Anime","Monsters","Infrastractures","Gaming","Countries","Geography","Space"]
+
 function AddDocument () {
     const [docData, setDocData] = useState({});
     const [uploadStatus, setUploadStatus] = useState(0.01);
@@ -153,9 +155,9 @@ function AddDocument () {
 
                 <MDBFormInline className="mb-3" >
                     <span className="mr-4">Tags: </span>
-                    <MDBInput value='Animals' label='Animals' type='checkbox' id="tag1" containerClass='mr-4'  onChange={handleTag}/>
-                    <MDBInput value='Sports' label='Sports' type='checkbox' id="tag2" containerClass='mr-4' onChange={handleTag}/>
-                    <MDBInput value='Wildlife' label='Wildlife' type='checkbox' id="tag3" containerClass='mr-4' onChange={handleTag}/>
+                    {
+                        TAGS.map((e, idx)=><MDBInput value={e} label={e} type='checkbox' id={`tag${idx+1}`} containerClass='mr-4'  onChange={handleTag}/>)
+                    }
                 </MDBFormInline>
 
                 <div class="form-group">

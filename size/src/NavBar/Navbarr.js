@@ -17,6 +17,17 @@ const navLinks = [
         // {name:'Statistics',type:'link',link:'statistics'},
         // {name:'More',type:'dropdown',options:['About Us','Request Topics']}
       ]
+const more = [
+            {name:'Military',type:'link',link:'military'},
+            {name:'Superhero',type:'link',link:'superhero'},
+            {name:'Anime',type:'link',link:'anime'},
+            {name:'Monsters',type:'link',link:'monsters'},
+            {name:'Infrastractures',type:'link',link:'infrastructure'},
+            {name:'Gaming',type:'link',link:'gaming'},
+            {name:'Countries',type:'link',link:'countries'},
+            {name:'Geography',type:'link',link:'geography'},
+            {name:'Space',type:'link',link:'space'}
+          ]
 
 class Navbarr extends React.Component {
     constructor(){
@@ -40,6 +51,10 @@ class Navbarr extends React.Component {
                 nav.classList.remove('py-0');
             }
         });
+        window.addEventListener('click',(e)=>{
+          if(document.querySelector('#navbarTogglerDemo02').classList.contains('show'))
+            document.querySelector('button.navbar-toggler').click();
+        })
         // document.querySelector('nav > div > button').addEventListener("click",function(){
         //     nav.style.backgroundColor = document.querySelector('#navbarTogglerDemo02').classList.toggle('show')?"rgb(72, 161, 253)":'inherit';
         //     // document.querySelector('#navbarTogglerDemo02').classList.toggle('show')
@@ -76,7 +91,18 @@ class Navbarr extends React.Component {
             <li class="nav-item">
               <a class="nav-link waves-effect waves-light" href="#contact" data-offset="100">Contact</a>
             </li> */}
-
+            <li class="nav-item dropdown">
+               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                 More
+               </a>
+               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  {
+                    more.map(e=>
+                      <a class="dropdown-item" href={'/'+e.link}>{e.name}</a>
+                    )
+                  }
+               </div>
+            </li>
             {
               navLinks.map((link, ind)=>(
                 <li class="nav-item">

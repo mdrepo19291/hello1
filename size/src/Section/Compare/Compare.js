@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {useParams, useRouteMatch} from 'react-router-dom';
 // import './Compare.scss'
 import Carousel from '../../Components/Carousal/Carousal'
@@ -20,6 +20,16 @@ function Compare({allData}){
       allData = allData.filter(obj=>(obj['doc-type']==='compare'))
     }
     let isError = topicDetails && topicDetails.error;
+
+    useEffect(()=>{
+      console.log('mounted');
+      
+      return ()=>{
+        // if (document.querySelector('.carousel-indicators'))
+        //     document.querySelector('.carousel-indicators').remove()
+        console.log('UNmounted');
+      }
+    },[topicId])
     // console.log(topicDetails);
     return (
         <>
@@ -42,17 +52,17 @@ function Compare({allData}){
           {
           // On click, carousal indicators not updating
           
-        //   <div className="cards mt-5 pt-5">
-        //   <h4 class="font-weight-bold mt-4 w-100 border-bottom border-danger">Related</h4>
-        // <hr class="red title-hr bg-danger" />
-        //       {
-        //         allData ? 
-        //         allData.map((topic, idx)=>(
-        //             <Card key={idx} title={topic.title} link={topic.id ? `/${topic['doc-type']}/${topic.id}` : "#"} img={topic.thumbnail || topic.img[0]} />
-        //         )) 
-        //         : null
-        //       }
-        //   </div>
+          <div className="cards mt-5 pt-5">
+          <h4 class="font-weight-bold mt-4 w-100 border-bottom border-danger">Related</h4>
+        <hr class="red title-hr bg-danger" />
+              {
+                allData ? 
+                allData.map((topic, idx)=>(
+                    <Card key={idx} title={topic.title} link={topic.id ? `/${topic['doc-type']}/${topic.id}` : "#"} img={topic.thumbnail || topic.img[0]} />
+                )) 
+                : null
+              }
+          </div>
           }
           <Comments topic={topicId}/>
         </>
